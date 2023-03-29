@@ -1,0 +1,80 @@
+<div class="layout=page">
+    <nav class="nav ">
+        <div class="container-fluid">
+            <div class="navbar-title">91 Social</div>
+        </div>
+    </nav>
+    <div class="pagebody container mt5" align="center">
+        <div class="newShop ">
+            <button mat-raised-button color="accent" class="wdt100" (click)="openShop()">New Shop</button>
+        </div>
+        <div class="search mt5">
+            <h2 class="sectionTitle">Search form</h2>
+            <form class="searchForm" [formGroup]="searchForm" (submit)="search(searchForm.value)">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="range">
+                            <mat-form-field class="formControl wdt100">
+                                <mat-label>Range</mat-label>
+                                <input matInput type="number" formControlName="range" class="formControl" min="1">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="latitude">
+                            <mat-form-field class="formControl wdt100">
+                                <mat-label>Latitude</mat-label>
+                                <input matInput type="text" formControlName="latitude" class="formControl" >
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="longitude">
+                            <mat-form-field class="formControl wdt100">
+                                <mat-label>Longitude</mat-label>
+                                <input matInput type="text" formControlName="longitude" class="formControl" >
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="reset">
+                            <button mat-raised-button color="accent" class="wdt100" type="reset" (click)="reset()">Reset</button>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="submit">
+                            <button mat-raised-button color="primary" class="wdt100" type="submit" [disabled]="!searchForm.valid">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+
+        <div class="searchResultsTable mt5">
+            <h2 class="sectionTitle">Search Results</h2>
+            <table class="table table-striped searchResults">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Latitude</th>
+                    <th scope="col">longitude</th>
+                    <th scope="col">View</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr *ngFor="let shop of shops, index as i">
+                    <th scope="row" class="cells">{{i+1}}</th>
+                    <td class="cells">{{shop.name}}</td>
+                    <td class="cells">{{shop.coordinates.coordinates[0]}} </td>
+                    <td class="cells">{{shop.coordinates.coordinates[1]}}</td>
+                    <td class="cells"><button mat-button (click)="openShop(shop._id)" >view</button></td>
+
+                  </tr>
+                 
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
